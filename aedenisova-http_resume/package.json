@@ -1,0 +1,17 @@
+{
+    "name": "resume-app",
+    "version": "1.0.0",
+    "description": "A simple resume application using Express and EJS",
+    "main": "server.js",
+    "scripts": {
+    "start": "node server.js"
+    },
+    "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "ejs": "^3.1.6",
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0"
+    }
+    }

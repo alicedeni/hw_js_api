@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме</title>
+    <style>
+        body {
+            font-family: Cascadia Mono, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        div {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            width: 200px;
+            border-radius: 50%;
+        }
+
+        a {
+            color: #007bff;
+        }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const token = prompt('Пожалуйста, введите токен для резюме:');
+            if (token) {
+                fetch('/resume/token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ token: token }),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Токен успешно отправлен на сервер');
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
+                    } else {
+                        console.error('Ошибка при отправке токена на сервер');
+                    }
+                })
+                .catch(error => console.error('Ошибка:', error));
+            } else {
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Резюме</h1>
+    <div>
+        <img src="<%= resumeData.avatar_url %>" alt="Аватар">
+        <p>Логин: <%= resumeData.login %></p>
+        <p>Имя: <%= resumeData.name %></p>
+        <p>Местоположение: <%= resumeData.location %></p>
+        <p>О себе: <%= resumeData.bio %></p>
+        <a href="<%= resumeData.html_url %>">Ссылка на профиль (репозитории)</a>
+    </div>
+</body>
+</html>
